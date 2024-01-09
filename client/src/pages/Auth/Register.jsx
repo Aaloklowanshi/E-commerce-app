@@ -7,7 +7,7 @@ import {useState} from "react";
 import {useNavigate} from "react-router-dom";
 import toast, { Toaster } from 'react-hot-toast';
 import axios from "axios"
-
+const REACT_APP_API =' https://ecommercebackend-htkc.onrender.com';
 function Register() {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
@@ -21,7 +21,7 @@ function Register() {
     const handleSubmit =  async(e)=>{
         e.preventDefault();
         try{
-            const response = await axios.post('http://localhost:8080/api/v1/auth/register' , 
+            const response = await axios.post(`${REACT_APP_API}/api/v1/auth/register` , 
             {
                 name , email , password , phone , address,answer
             });

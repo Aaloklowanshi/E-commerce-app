@@ -1,7 +1,7 @@
 import React from "react";
 import Layout from "./../components/Layout/Layout";
 import { useSearch } from "../context/Search";
-
+const REACT_APP_API =' https://ecommercebackend-htkc.onrender.com';
 const Search = () => {
   const [values, setValues] = useSearch();
   return (
@@ -19,7 +19,7 @@ const Search = () => {
               
               <div className="card m-2" style={{ width: "18rem" }}>
                 <img
-                  src={`http://localhost:8080/api/v1/product/product-photo/${p._id}`}
+                  src={`${REACT_APP_API}/api/v1/product/product-photo/${p._id}`}
                   className="card-img-top"
                   alt={p.name}
                 />

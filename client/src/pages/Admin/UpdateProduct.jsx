@@ -6,6 +6,7 @@ import axios from "axios";
 import { Select } from "antd";
 import { useNavigate, useParams } from "react-router-dom";
 const { Option } = Select;
+const REACT_APP_API =' https://ecommercebackend-htkc.onrender.com';
 
  const UpdateProduct = () => {
   const navigate = useNavigate();
@@ -24,7 +25,7 @@ const { Option } = Select;
   const getSingleProduct = async () => {
     try {
       const { data } = await axios.get(
-        `http://localhost:8080/api/v1/product/get-product/${params.slug}`
+        `${REACT_APP_API}/api/v1/product/get-product/${params.slug}`
       );
       setName(data.product.name);
       setId(data.product._id);
@@ -45,7 +46,7 @@ const { Option } = Select;
   //get all category
   const getAllCategory = async () => {
     try {
-      const { data } = await axios.get("http://localhost:8080/api/v1/category/get-category");
+      const { data } = await axios.get(`${REACT_APP_API}/api/v1/category/get-category`);
       if (data?.success) {
         setCategories(data?.category);
       }
@@ -71,7 +72,7 @@ const { Option } = Select;
       photo && productData.append("photo", photo);
       productData.append("category", category);
       const { data } = axios.put(
-        `http://localhost:8080/api/v1/product/update-product/${id}`,
+        `${REACT_APP_API}/api/v1/product/update-product/${id}`,
         productData
       );
       if (data?.success) {
@@ -92,7 +93,7 @@ const { Option } = Select;
       let answer = window.prompt("Are You Sure want to delete this product ? ");
       if (!answer) return;
       const { data } = await axios.delete(
-        `http://localhost:8080/api/v1/product/delete-product/${id}`
+        `${REACT_APP_API}/api/v1/product/delete-product/${id}`
       );
       toast.success("Product DEleted Succfully");
       navigate("/dashboard/admin/products");
@@ -153,7 +154,7 @@ const { Option } = Select;
                 ) : (
                   <div className="text-center">
                     <img
-                      src={`http://localhost:8080/api/v1/product/product-photo/${id}`}
+                      src={`${REACT_APP_API}/api/v1/product/product-photo/${id}`}
                       alt="product_photo"
                       height={"200px"}
                       className="img img-responsive"

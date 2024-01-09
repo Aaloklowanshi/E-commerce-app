@@ -5,44 +5,45 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
 
+const REACT_APP_API =' https://ecommercebackend-htkc.onrender.com';
+
 const Products = () => {
   const [products, setProducts] = useState([]);
 
-
-  //getall products
+  // get all products
   const getAllProducts = async () => {
     try {
-      const { data } = await axios.get("http://localhost:8080/api/v1/product/get-product");
+      const { data } = await axios.get(`${REACT_APP_API}/api/v1/product/get-product`);
       setProducts(data.products);
     } catch (error) {
       console.log(error);
-      toast.error("Someething Went Wrong");
+      toast.error("Something Went Wrong");
     }
   };
 
-  //lifecycle method
+  // lifecycle method
   useEffect(() => {
     getAllProducts();
   }, []);
-  
+
   return (
     <Layout>
       <div className="row dashboard">
         <div className="col-md-3">
           <AdminMenu />
         </div>
-        <div className="col-md-9 ">
+        <div className="col-md-9">
           <h1 className="text-center">All Products List</h1>
           <div className="d-flex flex-wrap">
             {products?.map((p) => (
               <Link
                 key={p._id}
-                to={`http://localhost:5173/dashboard/admin/product/${p.slug}`}
+                to={`${REACT_APP_API}/dashboard/admin/product/${p.slug}`}
                 className="product-link"
               >
                 <div className="card m-2" style={{ width: "18rem" }}>
                   <img
-                    src={`http://localhost:8080/api/v1/product/product-photo/${p._id}`}
+                    src={`${REACT_APP_API}/api/v1/product/product-photo/${p._id}`}
                     className="card-img-top"
                     alt={p.name}
                   />

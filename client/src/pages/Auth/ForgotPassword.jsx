@@ -8,6 +8,8 @@ import {useNavigate} from "react-router-dom";
 import toast, { Toaster } from 'react-hot-toast';
 import axios from "axios"
 
+const REACT_APP_API =' https://ecommercebackend-htkc.onrender.com';
+
 
 const ForgotPassword = () => {
     const [email, setEmail] = useState("")
@@ -20,7 +22,7 @@ const ForgotPassword = () => {
     const handleSubmit =  async(e)=>{
         e.preventDefault();
         try{
-            const response = await axios.post('http://localhost:8080/api/v1/auth/forgot-password' , {
+            const response = await axios.post(`${REACT_APP_API}/api/v1/auth/forgot-password` , {
                 email,
                 newPassword,
                 answer

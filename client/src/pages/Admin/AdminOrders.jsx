@@ -20,9 +20,11 @@ const AdminOrders = () => {
   const [changeStatus, setCHangeStatus] = useState("");
   const [orders, setOrders] = useState([]);
   const [auth, setAuth] = useAuth();
+  const REACT_APP_API =' https://ecommercebackend-htkc.onrender.com';
+
   const getOrders = async () => {
     try {
-      const { data } = await axios.get("http://localhost:8080/api/v1/auth/all-orders");
+      const { data } = await axios.get(`${REACT_APP_API}/api/v1/auth/all-orders`);
       setOrders(data);
     } catch (error) {
       console.log(error);
@@ -35,7 +37,7 @@ const AdminOrders = () => {
 
   const handleChange = async (orderId, value) => {
     try {
-      const { data } = await axios.put(`http://localhost:8080/api/v1/auth/order-status/${orderId}`, {
+      const { data } = await axios.put(`${REACT_APP_API}/api/v1/auth/order-status/${orderId}`, {
         status: value,
       });
       getOrders();
@@ -43,6 +45,7 @@ const AdminOrders = () => {
       console.log(error);
     }
   };
+
   return (
     <Layout title={"All Orders Data"}>
       <div className="row dashboard">
@@ -53,7 +56,7 @@ const AdminOrders = () => {
           <h1 className="text-center">All Orders</h1>
           {orders?.map((o, i) => {
             return (
-              <div className="border shadow">
+              <div className="border shadow" key={o._id}>
                 <table className="table">
                   <thead>
                     <tr>
@@ -93,7 +96,7 @@ const AdminOrders = () => {
                     <div className="row mb-2 p-3 card flex-row" key={p._id}>
                       <div className="col-md-4">
                         <img
-                          src={`http://localhost:8080/api/v1/product/product-photo/${p._id}`}
+                          src={`${REACT_APP_API}/api/v1/product/product-photo/${p._id}`}
                           className="card-img-top"
                           alt={p.name}
                           width="100px"
