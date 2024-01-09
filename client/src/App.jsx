@@ -3,7 +3,7 @@ import HomePage from "./pages/HomePage";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Policy from "./pages/Policy";
-import Pagenotfound from "./pages/PageNotFound";
+// import Pagenotfound from "./pages/Pagenotfound.jsx";
 import Register from "./pages/Auth/Register"
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -64,7 +64,7 @@ function App() {
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/policy" element={<Policy />} />
-        <Route path="*" element={<Pagenotfound />} />
+        {/* <Route path="*" element={<Pagenotfound />} /> */}
       </Routes>
     </>
   );
